@@ -2,12 +2,9 @@
 
 OS: Ubuntu 22.04 ROS2 Humble
 
-###########################################################################################################
 ros2_control源码安装官网：https://control.ros.org/humble/doc/getting_started/getting_started.html#building-from-source
 Moveit2源码安装官网：https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html
 虚拟机RAM至少分配16G，内核总数至少8核
-###########################################################################################################
-
 
 安装ubuntu-22.04.3-desktop-amd64
 虚拟机设置：取消WaylandEnable=false的注释，才能完成PC与虚拟机之间文件夹的拖拽
