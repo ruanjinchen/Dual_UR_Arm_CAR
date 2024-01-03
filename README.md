@@ -1,22 +1,26 @@
-# Dual_UR_Arm_CAR
-
-OS: Ubuntu 22.04 ROS2 Humble
-
-ros2_control源码安装官网：https://control.ros.org/humble/doc/getting_started/getting_started.html#building-from-source
-Moveit2源码安装官网：https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html
-虚拟机RAM至少分配16G，内核总数至少8核
-
-安装ubuntu-22.04.3-desktop-amd64
-虚拟机设置：取消WaylandEnable=false的注释，才能完成PC与虚拟机之间文件夹的拖拽
-sudo gedit /etc/gdm3/custom.conf
-
-安装ROS2 Humble和创建工作空间、编译需要的包
-wget http://fishros.com/install -O fishros && . fishros
-rosdepc update
-sudo apt install python3-vcstool git net-tools
-创建工作空间
-mkdir -p ~/ws_ur/src
-cd ~/ws_ur/src
+# 介绍
+本项目完成了自主设计底座模型组装的UR机械臂（双臂）的驱动控制。在Ubuntu 22.04 ROS2 Humble下，使用Moveit2 API 进行控制🥰在实际开发过程中遇到了不少问题，包括UR官方的Driver、Description版本，ros2-control，Moveit2等问题，在此不做全部解释。
+# 资料
+ros2-control的文档：https://control.ros.org/humble/doc/getting_started/getting_started.html  
+Moveit2的文档：https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html  
+如果您使用VMware虚拟机，那么RAM至少分配16G，内核总数至少8核，这为了保障在22.04下编译等运行的流畅度  
+# 环境配置步骤（从装好系统开始）
+前提：安装完成了ubuntu-22.04.3-desktop-amd64  
+  ## （虚拟机必看！）进入桌面之后，需要取消WaylandEnable=false的注释，才能完成PC与虚拟机之间文件夹的拖拽  
+    ```bash
+    sudo gedit /etc/gdm3/custom.conf
+    ```
+  ## 安装ROS2 Humble和创建工作空间、编译需要的包
+    ```bash
+    wget http://fishros.com/install -O fishros && . fishros
+    rosdepc update
+    sudo apt install git net-tools
+    ```
+  ## 创建工作空间
+    ```bash
+    mkdir -p ~/ws_ur/src
+    cd ~/ws_ur/src
+    ```
 
 git clone https://github.com/ros-planning/moveit2_tutorials
 vcs import < moveit2_tutorials/moveit2_tutorials.repos
