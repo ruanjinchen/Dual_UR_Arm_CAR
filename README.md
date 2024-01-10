@@ -22,6 +22,8 @@ mkdir -p ~/ur
 cd ur
 git clone https://github.com/ruanjinchen/Dual_UR_Arm_CAR.git
 mv Dual_UR_Arm_CAR src
+cd src/dual_ur_moveit_config
+mv setup_assistant .setup_assistant
 sudo rosdepc init
 rosdepc update
 rosdepc install --ignore-src --from-paths src -y
