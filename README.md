@@ -18,7 +18,7 @@ sudo apt install git net-tools terminator
 ```
   ## 创建工作空间，并编译
 ```
-mkdir -p ~/ur/src
+mkdir -p ~/ur
 cd ur
 git clone https://github.com/ruanjinchen/Dual_UR_Arm_CAR.git
 mv Dual_UR_Arm_CAR src
@@ -34,7 +34,7 @@ echo " source ~/ur/install/local_setup.sh" >> ~/.bashrc
 ros2 launch ur_robot_driver dual_ur_control.launch.py 
 ros2 launch dual_ur_moveit_config dual_ur_moveit.launch.py 
 ```
-有的时候会报错：...is of type {double}, setting it to {string} is not allowed，原因是[编码的问题](https://github.com/ros-planning/moveit2/issues/1049)。需要执行下面的指令
+有的时候会报错：...is of type {double}, setting it to {string} is not allowed，原因是[编码的问题](https://github.com/ros-planning/moveit2/issues/1049)，[感谢Gaël Écorchard的解答](https://github.com/ros-planning/moveit2/issues/1049#issuecomment-1047029751)，需要执行下面的指令:
 ```
 LC_NUMERIC=en_US.UTF-8 ros2 launch dual_ur_moveit_config dual_ur_moveit.launch.py 
 ```
