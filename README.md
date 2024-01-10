@@ -34,6 +34,10 @@ echo " source ~/ur/install/local_setup.sh" >> ~/.bashrc
 ros2 launch ur_robot_driver dual_ur_control.launch.py 
 ros2 launch dual_ur_moveit_config dual_ur_moveit.launch.py 
 ```
+有的时候会报错：...is of type {double}, setting it to {string} is not allowed，原因是[编码的问题](https://github.com/ros-planning/moveit2/issues/1049)。需要执行下面的指令
+```
+LC_NUMERIC=en_US.UTF-8 ros2 launch dual_ur_moveit_config dual_ur_moveit.launch.py 
+```
 # 其他
 API控制是读取的本地的Pose.json文件，所以在运行前需要确保机械臂安全的情况下，再启动API
 ```
