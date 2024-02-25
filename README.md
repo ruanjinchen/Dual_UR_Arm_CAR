@@ -1,5 +1,5 @@
 # 介绍
-本项目完成了自主设计底座模型组装的UR机械臂（双臂）的驱动控制。在Ubuntu 22.04 ROS2 Humble下，使用Moveit2 API 进行控制🥰在实际开发过程中遇到了不少问题，包括UR官方的Driver、Description版本，ros2-control，Moveit2等问题，在此不做全部解释。有任何问题欢迎发邮件给我：ruanjinchen@foxmail.com
+本项目完成了自主设计底座模型组装的UR机械臂（双臂）的驱动控制。在Ubuntu 22.04 ROS2 Humble下，使用Moveit2 API 进行控制🥰在实际开发过程中遇到了不少问题，包括UR官方的Driver、Description版本，ros2-control，Moveit2等问题，在此不做全部解释。
 # 资料
 ros2-control的文档：https://control.ros.org/humble/doc/getting_started/getting_started.html  
 Moveit2的文档：https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html  
@@ -18,17 +18,10 @@ sudo apt install git net-tools terminator
 ```
   ## 创建工作空间，并编译
 ```
-mkdir -p ~/ur
+mkdir -p ~/ur/src
 cd ur
 git clone https://github.com/ruanjinchen/Dual_UR_Arm_CAR.git
 mv Dual_UR_Arm_CAR src
-cd src/dual_ur_moveit_config
-mv setup_assistant .setup_assistant
-cd ..
-cd ..
-```
-  ## 如果安装了rosdepc,就用rosdepc，没有就用rosdep
-```
 sudo rosdepc init
 rosdepc update
 rosdepc install --ignore-src --from-paths src -y
@@ -41,12 +34,13 @@ echo " source ~/ur/install/local_setup.sh" >> ~/.bashrc
 ros2 launch ur_robot_driver dual_ur_control.launch.py 
 ros2 launch dual_ur_moveit_config dual_ur_moveit.launch.py 
 ```
-有的时候会报错：...is of type {double}, setting it to {string} is not allowed，原因是[编码的问题](https://github.com/ros-planning/moveit2/issues/1049)，[感谢Gaël Écorchard的解答](https://github.com/ros-planning/moveit2/issues/1049#issuecomment-1047029751)，需要执行下面的指令:
-```
-LC_NUMERIC=en_US.UTF-8 ros2 launch dual_ur_moveit_config dual_ur_moveit.launch.py 
-```
 # 其他
-API控制是读取的本地的Pose.json文件，所以在运行前需要确保机械臂安全的情况下，再启动API
+API控制是读取的本地的Pose.json文件，所以在运行前需要确保机械臂安全的情况下，再启动API。  
 ```
 ros2 launch dual_ur_moveit_api dual_ur_moveit_api.launch.py
 ``` 
+在2024.2.24最新的测试中，`joint-trajectory-controller`的版本需要为2.29.0，如果使用sudo apt install 命令安装则会默认安装最新版，旧版已无法安装，需要手动替换库文件。
+```
+sudo cp -f $HOME/ur/src/ur_driver/ur_controllers/include/_joint_trajectory_controller/* /opt/ros/humble/include/joint_trajectory_controller/
+```
+
