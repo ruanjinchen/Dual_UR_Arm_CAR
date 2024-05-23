@@ -1,5 +1,5 @@
 # 介绍
-本项目完成了自主设计底座模型组装的UR机械臂（双臂）的驱动控制。在Ubuntu 22.04 ROS2 Humble下，使用Moveit2 API 进行控制🥰在实际开发过程中遇到了不少问题，包括UR官方的Driver、Description版本，ros2-control，Moveit2等问题，在此不做全部解释。
+本项目完成了自主设计底座模型组装的UR机械臂（双臂）的驱动控制。在Ubuntu 22.04 ROS2 Humble下，使用Moveit2 API 进行控制🥰在实际开发过程中遇到了不少问题，包括UR官方的Driver、Description版本，ros2-control，Moveit2等问题，在此不做全部解释。最新测试2024年4月23日，由于`joint-trajectory-controller`等版本更新了，该Repo编译有报错。
 # 资料
 ros2-control的文档：https://control.ros.org/humble/doc/getting_started/getting_started.html  
 Moveit2的文档：https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html  
